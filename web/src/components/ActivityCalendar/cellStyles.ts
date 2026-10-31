@@ -16,15 +16,15 @@ const INTERACTIVE_CHIP =
 
 const OUTSIDE_MONTH_CHIP = "bg-transparent text-muted-foreground/25";
 const EMPTY_CHIP = "bg-transparent text-foreground/75 group-hover/day:bg-muted/40";
-/** A picked day is a checked filter like a view or tag row: it takes the accent, not a ring. */
-const SELECTED_CHIP = "z-10 bg-primary font-medium text-primary-foreground";
+/** A picked day uses flomo's quiet mint calendar fill instead of the stronger action color. */
+const SELECTED_CHIP = "z-10 bg-[var(--calendar-selected)] font-medium text-[var(--calendar-selected-foreground)]";
 
-/** Primary-tinted activity levels; the small chip can carry a stronger wash than a full day cell. */
+/** Flomo-style mint activity levels, ending at the exact #c2e8d1 reference color. */
 const INTENSITY_TINTS: Record<Exclude<ActivityLevel, 0>, string> = {
-  1: "bg-primary/12 text-foreground/75",
-  2: "bg-primary/22 text-foreground/80",
-  3: "bg-primary/34 text-foreground/80",
-  4: "bg-primary/48 text-foreground/85",
+  1: "bg-[var(--calendar-activity-1)] text-foreground/75",
+  2: "bg-[var(--calendar-activity-2)] text-foreground/80",
+  3: "bg-[var(--calendar-activity-3)] text-foreground/80",
+  4: "bg-[var(--calendar-activity-4)] text-foreground/85",
 };
 
 /**
@@ -33,16 +33,15 @@ const INTENSITY_TINTS: Record<Exclude<ActivityLevel, 0>, string> = {
  */
 export const DAY_CELL_FILLS: Record<ActivityLevel, string> = {
   0: "bg-card hover:bg-muted/40",
-  1: "bg-primary/8 hover:bg-primary/12",
-  2: "bg-primary/16 hover:bg-primary/20",
-  3: "bg-primary/26 hover:bg-primary/30",
-  4: "bg-primary/38 hover:bg-primary/42",
+  1: "bg-[var(--calendar-activity-1)] hover:bg-[var(--calendar-activity-2)]",
+  2: "bg-[var(--calendar-activity-2)] hover:bg-[var(--calendar-activity-3)]",
+  3: "bg-[var(--calendar-activity-3)] hover:bg-[var(--calendar-activity-4)]",
+  4: "bg-[var(--calendar-activity-4)] hover:brightness-[0.97]",
 };
 
 const getFillClass = (day: CalendarDayCell, maxCount: number): string => {
   if (!day.isCurrentMonth) return OUTSIDE_MONTH_CHIP;
-  // Selected owns the fill outright: layering the empty-cell hover tint on top would swap
-  // the accent out on hover and leave primary-foreground text on a muted chip.
+  // Selected owns the fill outright so the empty-cell hover tint cannot replace the calendar mint.
   if (day.isSelected) return SELECTED_CHIP;
   const level = getActivityLevel(day.count, maxCount);
   return level === 0 ? EMPTY_CHIP : INTENSITY_TINTS[level];

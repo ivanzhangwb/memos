@@ -14,6 +14,18 @@
   /* Primary - readable blue for selected items, links, and focused controls */
   --primary: oklch(0.66 0.11 250);
   --primary-foreground: oklch(0.24 0.008 255);
+  --primary-surface: var(--primary);
+  --primary-surface-foreground: var(--primary-foreground);
+  --tag-foreground: #2b88d8;
+  --tag-background: #3a4359;
+  --tag-hover-foreground: var(--tag-background);
+  --tag-hover-background: var(--tag-foreground);
+  --calendar-selected: color-mix(in oklab, #c2e8d1 25%, var(--card));
+  --calendar-selected-foreground: var(--foreground);
+  --calendar-activity-1: color-mix(in oklab, var(--calendar-selected) 35%, var(--card));
+  --calendar-activity-2: color-mix(in oklab, var(--calendar-selected) 55%, var(--card));
+  --calendar-activity-3: color-mix(in oklab, var(--calendar-selected) 75%, var(--card));
+  --calendar-activity-4: var(--calendar-selected);
 
   /* Secondary - elevated surface for secondary buttons */
   --secondary: oklch(0.33 0.011 255);

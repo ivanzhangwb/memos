@@ -96,7 +96,13 @@ describe("Editor", () => {
     queries.tagsSetting = undefined;
     const { container, rerender } = render(<Editor {...baseProps} value="#work and #life" />);
     const tag = (name: string) => container.querySelector<HTMLElement>(`.mbe-tag[data-tag="${name}"]`);
-    expect(tag("life")).toHaveClass("rich:rounded-full", "rich:border-primary");
+    expect(tag("life")).toHaveClass(
+      "rich:rounded-[8px]",
+      "rich:px-[5px]",
+      "rich:py-[3px]",
+      "rich:bg-[var(--tag-background)]",
+      "rich:hover:bg-[var(--tag-hover-background)]",
+    );
     expect(tag("work")).not.toHaveAttribute("style");
 
     queries.tagsSetting = create(UserSetting_TagsSettingSchema, {
@@ -104,7 +110,7 @@ describe("Editor", () => {
     });
     rerender(<Editor {...baseProps} value="#work and #life" />);
     await waitFor(() => expect(tag("work")?.style.getPropertyValue("--tag-color")).toBe("#ff0000"));
-    expect(tag("work")).not.toHaveClass("rich:border-primary");
+    expect(tag("work")).toHaveClass("rich:bg-[color-mix(in_srgb,var(--tag-color)_15%,transparent)]", "rich:hover:bg-[var(--tag-color)]");
 
     // The pill is rich text's: every memos class but the text color takes the `rich:`
     // variant, so source mode, where the editor applies the same classes, keeps plain text.

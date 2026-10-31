@@ -7,6 +7,18 @@
   --popover-foreground: oklch(0.25 0.02 65);
   --primary: oklch(0.45 0.08 45);
   --primary-foreground: oklch(0.98 0.008 80);
+  --primary-surface: var(--primary);
+  --primary-surface-foreground: var(--primary-foreground);
+  --tag-foreground: var(--primary);
+  --tag-background: color-mix(in oklab, var(--primary) 12%, transparent);
+  --tag-hover-foreground: var(--primary-foreground);
+  --tag-hover-background: var(--primary);
+  --calendar-selected: color-mix(in oklab, #c2e8d1 65%, var(--card));
+  --calendar-selected-foreground: var(--foreground);
+  --calendar-activity-1: color-mix(in oklab, var(--calendar-selected) 35%, var(--card));
+  --calendar-activity-2: color-mix(in oklab, var(--calendar-selected) 55%, var(--card));
+  --calendar-activity-3: color-mix(in oklab, var(--calendar-selected) 75%, var(--card));
+  --calendar-activity-4: var(--calendar-selected);
   --secondary: oklch(0.92 0.025 70);
   --secondary-foreground: oklch(0.35 0.03 60);
   --muted: oklch(0.9 0.025 75);

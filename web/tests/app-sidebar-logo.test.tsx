@@ -540,7 +540,7 @@ describe("App sidebar logo", () => {
     const createView = screen.getByRole("button", { name: "setting.memo-view.create" });
     expect(viewOptions.closest("nav")).toBe(screen.getByRole("navigation", { name: "Primary" }));
     expect(screen.getByRole("link", { name: "common.timeline" }).nextElementSibling).toBe(viewOptions);
-    expect(viewOptions.parentElement).toHaveClass("bg-sidebar-accent", "rounded-md");
+    expect(viewOptions.parentElement).toHaveClass("bg-primary-surface", "rounded-md");
     expect(viewOptions.closest("a")).toBeNull();
     expect(createView).toHaveTextContent("setting.memo-view.create");
     expect(screen.queryByRole("button", { name: "common.tasks" })).not.toBeInTheDocument();

@@ -47,6 +47,12 @@ describe("CalendarCell empty-day clickability", () => {
     expect(onClick).toHaveBeenCalledWith("2025-05-01");
   });
 
+  it("uses the flomo mint for the highest activity level", () => {
+    render(<CalendarCell day={makeDay({ count: 5 })} maxCount={5} tooltipText="May 1, 2025" onClick={() => {}} />);
+
+    expect(chipOf(screen.getByRole("button", { name: /May 1, 2025/ }))).toHaveClass("bg-[var(--calendar-activity-4)]");
+  });
+
   it("marks today with a dot without changing the numeral weight", () => {
     render(<CalendarCell day={makeDay({ isToday: true })} maxCount={5} tooltipText="May 1, 2025" onClick={() => {}} />);
 
@@ -55,22 +61,22 @@ describe("CalendarCell empty-day clickability", () => {
     expect(button.querySelector('[aria-hidden="true"]')).toHaveClass("rounded-full");
   });
 
-  it("fills a selected day with the accent like a checked filter row, keeping the numeral weight", () => {
+  it("fills a selected day with the calendar mint, keeping the numeral weight", () => {
     render(<CalendarCell day={makeDay({ isSelected: true })} maxCount={5} tooltipText="May 1, 2025" onClick={() => {}} />);
 
     const button = screen.getByRole("button", { name: /selected/ });
-    expect(chipOf(button)).toHaveClass("bg-primary", "text-primary-foreground", "font-medium");
+    expect(chipOf(button)).toHaveClass("bg-[var(--calendar-selected)]", "text-[var(--calendar-selected-foreground)]", "font-medium");
     expect(chipOf(button)).not.toHaveClass("ring-2", "ring-inset");
     expect(chipOf(button)).not.toHaveClass("font-semibold", "font-bold");
   });
 
-  it("keeps the accent fill on a selected empty day under hover", () => {
+  it("keeps the calendar mint on a selected empty day under hover", () => {
     render(<CalendarCell day={makeDay({ isSelected: true })} maxCount={5} tooltipText="May 1, 2025" onClick={() => {}} />);
 
     const chip = chipOf(screen.getByRole("button", { name: /selected/ }));
-    // The empty-cell hover tint would replace bg-primary on hover and strand the light numeral.
+    // The empty-cell hover tint would replace the selected surface on hover.
     expect(chip).not.toHaveClass("group-hover/day:bg-muted/40", "bg-transparent");
-    expect(chip).toHaveClass("bg-primary");
+    expect(chip).toHaveClass("bg-[var(--calendar-selected)]");
   });
 
   it("caps the chip so a wider container buys hit area, not calendar height", () => {

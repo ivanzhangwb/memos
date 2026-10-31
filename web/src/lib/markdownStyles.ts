@@ -33,13 +33,14 @@ export const markdownStyles = {
  * syntax highlighting does around it.
  */
 export const tagStyles = {
-  /** The pill: shape, padding and typography. */
-  base: "rich:inline-flex rich:items-center rich:align-baseline rich:px-1.5 rich:py-0.5 rich:text-[0.9em] rich:leading-none rich:font-normal rich:rounded-full rich:border",
-  /** The theme color, used when the tag has no color of its own. */
-  defaultColor: "text-primary rich:border-primary rich:bg-primary/15",
-  /** The user's color, read from `--tag-color` on the element: the text darkened for contrast, the pill a light tint of it. */
+  /** Flomo-style inline pill: compact, softly rounded, borderless, and animated on hover. */
+  base: "rich:mr-0.5 rich:inline-flex rich:cursor-pointer rich:items-center rich:align-baseline rich:rounded-[8px] rich:px-[5px] rich:py-[3px] rich:text-[0.875em] rich:leading-4 rich:font-normal rich:transition-colors rich:duration-200",
+  /** The theme's tag colors, inverted on hover like flomo's span.tag. */
+  defaultColor:
+    "text-[var(--tag-foreground)] rich:bg-[var(--tag-background)] rich:hover:bg-[var(--tag-hover-background)] rich:hover:text-[var(--tag-hover-foreground)]",
+  /** The user's color, read from `--tag-color`; it keeps the same borderless pill and stronger hover fill. */
   customColor:
-    "text-[color:color-mix(in_srgb,var(--tag-color)_60%,black)] rich:border-(--tag-color) rich:bg-[color-mix(in_srgb,var(--tag-color)_15%,transparent)]",
+    "text-[color:color-mix(in_srgb,var(--tag-color)_60%,black)] rich:bg-[color-mix(in_srgb,var(--tag-color)_15%,transparent)] rich:hover:bg-[var(--tag-color)] rich:hover:text-[color:color-mix(in_srgb,var(--tag-color)_20%,black)]",
 } as const;
 
 /**

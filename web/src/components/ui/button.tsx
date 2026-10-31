@@ -13,7 +13,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-primary text-primary-foreground shadow-xs hover:bg-primary/90 data-popup-open:bg-primary/90 aria-pressed:bg-primary/90",
+          "bg-primary-surface text-primary-surface-foreground shadow-xs hover:bg-primary-surface/90 data-popup-open:bg-primary-surface/90 aria-pressed:bg-primary-surface/90",
         destructive: "bg-destructive text-destructive-foreground shadow-xs hover:bg-destructive/90",
         outline:
           "border border-border/80 bg-transparent hover:bg-muted/60 hover:text-foreground data-popup-open:bg-accent data-popup-open:text-accent-foreground aria-pressed:bg-accent aria-pressed:text-accent-foreground",

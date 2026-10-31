@@ -76,12 +76,12 @@ describe("calendar daily snapshot cell", () => {
   it("tints the background by the day's share of the busiest day, like a heatmap", () => {
     cell(summary, { isSelected: false });
     // Two of a max of four memos is the second of four levels.
-    expect(screen.getByRole("link")).toHaveClass("bg-primary/16");
+    expect(screen.getByRole("link")).toHaveClass("bg-[var(--calendar-activity-2)]");
     expect(screen.getByRole("link")).not.toHaveClass("bg-card", "bg-accent");
   });
   it("keeps the heat tint under the open day and marks it with a quiet badge on the numeral", () => {
     cell(summary, { isToday: false });
-    expect(screen.getByRole("link")).toHaveClass("bg-primary/16");
+    expect(screen.getByRole("link")).toHaveClass("bg-[var(--calendar-activity-2)]");
     expect(screen.getByRole("link")).not.toHaveClass("bg-accent");
     expect(screen.getByText("7")).toHaveClass("font-medium", "bg-foreground/10", "text-foreground", "rounded-md");
     expect(screen.getByText("7").parentElement).not.toHaveClass("bg-foreground/10");
@@ -128,7 +128,7 @@ describe("calendar daily snapshot cell", () => {
   });
   it("trades the preview for a mark on the tinted date when very narrow", () => {
     cell(summary, { width: 56, isSelected: false });
-    expect(screen.getByRole("link")).toHaveClass("bg-primary/16");
+    expect(screen.getByRole("link")).toHaveClass("bg-[var(--calendar-activity-2)]");
     expect(screen.queryByText("A memorable afternoon")).toBeNull();
     expect(document.querySelectorAll("img")).toHaveLength(1);
     expect(document.querySelector("img")).toHaveClass("size-4");
